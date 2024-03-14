@@ -1,0 +1,19 @@
+This is LeetCode notes per question. You'll find tips and tricks used while solving the question for future reference.
+======================================================================================================================
+
+Q 930. Binary Subarrays With Sum
+>> Sliding Window can be used. Make sure you reset left and right once right hits end for one particular left.
+>> Sliding windows can be thought of prefix sum problem
+  >> This is because sum(0:i) - sum(0:i-k) = sum of window (k:i) = sum to be found
+  >> Adding map here will help immencely since sum (0:i) - sum to be found = sum (0: i-k) = sum which was already seen.
+  >> map[sum]++ will create index of sum then add value to it as well if sum doesn't exists or sumply increement if exists
+
+Q2. Add Two Numbers (LinkedList)
+>> if l1 or l2 length differ then no need to break the code and do for left over longer path
+>> use ternary operator 
+>> make sure you take care of last extra carry which could come even with all nodes are explored 
+  so better loop with carry in condition to run extra
+>> OR condition in while helps a lot
+while( l1 || l2 || carry)
+        {
+            sum = ((l1)? l1->val : 0) + ((l2) ? l2->val : 0) + carry;   
