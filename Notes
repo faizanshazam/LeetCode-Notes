@@ -17,3 +17,27 @@ Q2. Add Two Numbers (LinkedList)
 while( l1 || l2 || carry)
         {
             sum = ((l1)? l1->val : 0) + ((l2) ? l2->val : 0) + carry;   
+
+Q4. Median of Two Sorted Arrays
+>> Median of stream of numbers coming using min heap and max heap
+  >> ALGORITHM
+      >> prioroty_queue<int, vec<int>, greater<int>> minheap;
+      >> prioroty_queue<int, vec<int>> maxheap;
+      >> first element should go into min heap if max heap is empty
+      >> if maxheap is not empty and curr could go inside max heap then push in maxheap
+          >> after pushing check if size diff between max and min heap is more than 1 so heapify
+          >> remove from max top and push to min heap
+     >> else push to min heap and same check of size if if min size > max heap size then heapify
+  >> for traversing two vectors of diff size 
+
+         while(i < num1.size() || j < num2.size())
+        {
+        //pick the element
+
+            if( i< num1.size() && j < num2.size())
+                curr = (num1[i] <= num2[j]) ? num1[i++] : num2[j++];
+            else if (i >= num1.size())
+                curr = num2[j++];
+            else
+                curr = num1[i++];
+  
