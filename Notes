@@ -40,4 +40,13 @@ Q4. Median of Two Sorted Arrays
                 curr = num2[j++];
             else
                 curr = num1[i++];
+
+Q41. First Missing Positive
+>> Best approach is placing the numbers at its correct position by swapping if
+    ar[i] <=n and ar[i] >0 
+    also ar[i] is not at its correct position
+    after swapping do i-- for recheck till it reaches right postion
+>> This is because as per question we can assume numbers should be from 1 - n
+so if that the case then it will be placed at it correct position ie pos = ar[i] - 1
+>> after arranging we can run from 1 to n and see the first number missing.
   
