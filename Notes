@@ -49,4 +49,18 @@ Q41. First Missing Positive
 >> This is because as per question we can assume numbers should be from 1 - n
 so if that the case then it will be placed at it correct position ie pos = ar[i] - 1
 >> after arranging we can run from 1 to n and see the first number missing.
-  
+
+Q.525. Contiguous Array of equal 0 and 1
+>>Contiguous or subarray = can perform prefix sum
+>> Idea is faily simple, consider 0 as -1 and 1 as 1 create prefix sum of this.
+>> if we encountered same number between 2 indices then it means number changes and
+  came back to same value so inbetween number cancelled each other.
+>> EDGE CASE: what if no number repeats then there will be case sum become zero somehwere
+  so always consider those as well in your max distance logic.
+
+Q Cycle sort : important when questions involvd 1-N numbers, find missing number if one duplicate.
+>> Idea is failry simple, make sure current ele a[i] is at it correct index a[a[i]-1]
+  >> if a[i] != a[a[i] -1] then swap the number and make sure your a[i] <=n for this to happen for index bounding condition
+  >> create a loop from 1 to N and its to be expected that i+1 should be the value at a[i] after swap , the first time number differs the that i+1 is ans
+>> or create a mark bit on the same number lets say 20bit and set it
+  >> after you did this you can rerun a loop from 1 to N and first time 20th bit is not set is your i+1
