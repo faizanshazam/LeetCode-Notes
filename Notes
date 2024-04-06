@@ -156,13 +156,20 @@ Q.605. Can Place Flowers
 
 Q 334. Increasing Triplet Subsequence
 
->> 
+>>  Here we have to find the condition i < j<k such that a[i] < a[j] < a[k]
+
+idea is simple consider a[i] to be the middle of teh sequence and find any number before it which is low
+and any number above it to be high. This could could be achieved by considering SMALLER and GREATER array
+make two array of such type. smaller[i]< a[i] < greater[i] if condition is meat then consider.
 
 Q Array of Product
-  >>
+  >> P(i) = P(all except a[i])
+Need to condsider zeros and if any number is zero or multipple zero is there.
+For zero 1 = all will be zero except zero itself so keep track of all product expect zero
+Also check of mistankenly you don't divide by zero
 
 Q Words extraction from sentence
-  >>
+  >> 
 
 Q Switch case
   >> switch case with nobraces inside case will cause evething to come under single siwtch scope
@@ -247,7 +254,53 @@ Q difference between typedef enum and enum
   >> with typedef you don't have to say enum 
     state st = ON;
 
+Q.283. Move Zeroes
+>> Idea is simple, need to track the index where zero started and sawp every non zero nuber with the z_start index;
+>> Careful about chooseing z_start since we need to maintain order of coming numbers better find the first index of zero
+a[start] == 0 && z_start == -1 then z_start = start
+>> Also when you put elements to a[z_start] make sure a[start] becomes 0 kind of like creating a hole.
 
+Q.739. Daily Temperatures
+>> temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have
+to wait after the ith day to get a warmer temperature.
+
+Input: temperatures = [73,74,75,71,69,72,76,73]
+Output: [1,1,4,2,1,1,0,0]
+
+Idea is good one, so we need to track next increasing temperature
+anyting related to next increasing could lead to monotonic stack.
+since we have dependecy on upcoming day temperature need to travel reverse while keeping stack check.
+
+if(current < st.top) then this could become next greater for some other value so keep in stack and travel backward
+if(current > st.top) find the number which is greater than current in stack while poping the values which are less
+
+this requires a distance cheking since answer demand so use pair<int,int> make_pair(int, int) in stack and distance
+is top.seond - current_index 
+
+Q.1493. Longest Subarray of 1's After Deleting One Element
+>> Idea is as the question says do it
+>> push 0s at begining and end of barrier vector to handle edge cases
+
+>> barrier vector represents 0 as -1 (the barrier) and number of 1s . eg 0 3 -1 -1 0 ==>>  1 1 1 0 0 
+>> now need to cook up logic to consider removing barriers (-1) and adding prev and next element to the barriers if they are not barrier temselves
+else if next to next element is barrier we'll consider previous element as max count and do same if barriers exists in prev to prev elemet considering next elemet
+as max count. 
+>> for edge cases consider the fact there could be no barriers i.e all 1s
+>> there could be all barriers no 1s
+
+Q. SOME FACTS ABOUT VECTORS
+>> vector<vector<int>> vec; -> this doesn't have any size yet
+	>> for n*m first resize vec to get n rows: vec.resize(n)
+	>> then resize all rows to get m column : loop vec[i].resize(m)
+
+Remember without resizing can't access element index
+
+Q. SOME IMPORTANAT FACTS ABOUT MAPS
+>> map can accomodate vectors as well
+	map<vector<int>, int> --> this will internally check vector comparision
+
+Q SOME FACTS ABOUT STRING
+>> Converting number to string, use to_string() rather than char - '0' since that could lead to wrong character/symbol after difference
 
 Q1206. Design Skiplist
 >> What is a skip list?
