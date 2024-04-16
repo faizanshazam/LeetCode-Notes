@@ -302,6 +302,36 @@ Q. SOME IMPORTANAT FACTS ABOUT MAPS
 Q SOME FACTS ABOUT STRING
 >> Converting number to string, use to_string() rather than char - '0' since that could lead to wrong character/symbol after difference
 
+Q.1318. Minimum Flips to Make a OR b Equal to c
+>> Idea is simple, we need to find the difference in bits using xor operation but ctch is you can't count the bits difference in a|b then ^ c
+snce question mentioned that we need to operate on a and b to make  a|b eqaul to c.
+	Input: a = 2, b = 6, c = 5
+	/ 0011 : diff (a|b)^c
+	// 0001 : c & diff
+	// 0010 : a & diff
+	
+	// 0011 : (c & diff)^(a&diff) : 2
+	//  0010 : b & diff ^ 0 ->1
+
+Q.338. Counting Bits
+>> Create array of number of set bits in numbers from 0-n;
+	>> Apprach 1: count the nits via loop (n) : n = n&(n-1)
+	>> Approach2 : awesome : if num = 5 i.e 0101 so we can say 1 + count(0010) which is 1+ count(num >>1).
+	>> make sure number should be positive
+	>> if num is odd vec[num] = 1+ vec[num >>1]
+	>> else vec[num] = vec[num>>1]
+	>> if question says count then you can add all
+
+Q.2390. Removing Stars From a String
+>> Question is simple we need to think like a stack, could b solved without it but lets assume stack approach
+if current index is * then remove top of stack else push into stack. finally create string using elements left inside stack.
+	>>IMPORTANT : str = str+ chararcter will give memory oberflow if str is a big string. to avoid this use
+	>>string.push_back(char)
+	mkae sure your reverse the stack and perform append into string at last.
+
+Q HOW TO FIND IF TWO NUMBERS ARE OF OPPOSITE SIGN:
+>> BEST ANS is  XOR of two such numbers < 0
+
 Q1206. Design Skiplist
 >> What is a skip list?
 1---------3--------------6-------------9  -> Express lane
