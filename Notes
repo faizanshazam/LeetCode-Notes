@@ -332,6 +332,87 @@ if current index is * then remove top of stack else push into stack. finally cre
 Q HOW TO FIND IF TWO NUMBERS ARE OF OPPOSITE SIGN:
 >> BEST ANS is  XOR of two such numbers < 0
 
+Q.How to do Binary Serach on infinite series numbers
+>> Since boundry of uppder limit is not known, first we should create a bou ndry and check if boundry uppder limit is 
+cover the key if not then extend the boundry twice and update lower to high and do the same
+int low = 0;int high =1;
+
+int val = arr[high];
+while(val < key)
+{
+	low = h;
+	h = 2*h;
+	val = arr[h]
+}
+// after this you can perform binary serach on l and h
+
+Q. BINARY SEARCH
+	while : low < = high
+	in series to find the first element of occurance 1 2 2 2 2 3 x = 2 index should be 1
+	in such case removing first appearance instance check if a[mid] == x will help to get the first intsnace of x.
+
+Q. 162. Find Peak Element
+>> BINARY SEACH : mid should be higher than mi-1 and mid + 1 element; 
+	assumption : there will always be one peak also can consier INT_MIN to be first and last index you can append;
+		start index in that case will be 1 and end index will be nums.size()-2
+
+Q. 2336. Smallest Number in Infinite Set
+>> You have to consider tht all 1 to infinity numbers are there 
+>> need to track of popped elemenst in a map to identify next smallest.
+	potential next smallest  = prev +1; keep doing this as smallest is in the map meaning that number was deleted.
+
+Q. BINARY SEARCH: missing k numbers 1-N (positive)
+>> 	3 6 8 9 11
+Ideally 1 2 3 4 5 
+Missing 2 4 5 5 6
+	|   |_____________>1 2 4 5 are missing so ideal position - current number at that position is missing numbers total in b/w.
+	|_________> 1 2 are missing
+
+
+You can perform binary search on this and identify indices b/w which k is present if k was 3 so indices will be 0 and 1 (missing: 2 4)
+
+Q. 240. Search a 2D Matrix II
+>> Concept of Binary search is ELEMINATION.
+>> This is prime example of that assume. 
+
+[1,4,7,11,15],
+[2,5,8,12,19],
+[3,6,9,16,22],
+[10,13,14,17,24],
+[18,21,23,26,30]
+
+searching 13, assume right corener ele 15, where going left decreases the number and going down increases the number.
+That will be our condition for searching, if target < row col element then number is left of 15 so elemention of enture down col.
+col = col-1 and similary if target > row col element then elementation of entire current row i.e row = row +1;
+
+Worst case O(M+N)
+
+
+
+
+Q2542. Maximum Subsequence Score
+>> Very interseting question where Sorting an min heap will be insoved,
+>> given num1 and num2, find max score of of E nums[i] * min(nums2[0:k])
+>> idea is if we need min of num2 and max of nums1 where num2 index is presnt in num1 sum
+then if nums is ordered descendigly and when k item is selected the kth item will be the minimum (since it was dec order)
+then among k sum will be one ans instance and if we increment k then that kth element will be the minumum but among
+k+1 element now the minum of them should not be considered. (MIM HEAP):
+make sure ou add k+1th item and tehn remove from minheap which ever is minumimum and reduce the sum as well.
+now the removed item could be either same index num1 which was added or some other.
+
+IF some other then we are good coz previous k elemet minumum is k+1th which was newly added and removing the minumum
+of remainling k will be another ans instance.
+
+IF same number is mimum and it is deleted then we don't care since previous calcluted sum will always be higher as
+k+1th is minimum anyways and num1 accocisted with it is also minumum so should never consider it in first place
+				             k
+
+Q. String to integer Char* to integer
+>> stoi (str)
+>> atoi(char*)
+>> to_string(int)
+>> while making number from reverse ofder remeber for case 100 => 0*10 + 0 will come so better take care of that
+
 Q1206. Design Skiplist
 >> What is a skip list?
 1---------3--------------6-------------9  -> Express lane
