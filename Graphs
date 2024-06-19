@@ -1,0 +1,9 @@
+Graphs
+==================
+
+1. Disjoint Set : Basic trick, usually used in Dynamic graph i.e Graph which changes as query comes Graphs exands or contracts
+
+DisJoin by Rank
+DisJoin by Union
+
+Initally every node is single
