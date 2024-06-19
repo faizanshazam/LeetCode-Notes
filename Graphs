@@ -1,9 +1,148 @@
 Graphs
 ==================
 
-1. Disjoint Set : Basic trick, usually used in Dynamic graph i.e Graph which changes as query comes Graphs exands or contracts
+1. Disjoint Set : Basic trick, usually used in Dynamic graph i.e Graph which changes as query comes Graphs exands or contracts. It would always need some order in which qeries could be concluded.
 
 DisJoin by Rank
 DisJoin by Union
 
 Initally every node is single
+
+func:
+>> findParent()
+>> Union --> byRank UnionRank()
+          --> by Size UninonSize()
+
+// Need array as parents and rank
+          ┌─────┬──────┬──────┬────────┬──────┬───────┬───────┬──────┬──────┐
+          │     │      │      │        │      │       │       │      │      │
+          │  1  │ 1   │  1   │  4     │ 5    │       │       │      │      │
+          └─────┴──────┴──────┴────────┴──────┴───────┴───────┴──────┴──────┘
+        Parent
+
+          ┌─────┬──────┬──────┬────────┬──────┬───────┬───────┬──────┬──────┐
+          │     │      │      │        │      │       │       │      │      │
+          │   2 │ 0    │ 0    │  0     │ 0    │       │       │      │      │
+          └─────┴──────┴──────┴────────┴──────┴───────┴───────┴──────┴──────┘
+          Rank
+Steps:
+1> finf ultimate parentof u and v as pu and pv.
+2> Connect smaller rank to larger always
+
+uinion(1,2) --> rank (p(1)) = 0 rank(p(2)) = 0, can connect anyone with anyone.
+connect 2 to 1
+
+union (2,3) --> p(2) = 1, p(3) = 3
+                rank(p(2)) = 1 rank(p(3)) = 0 connect 3 to 1
+
+
+To find ultimate parent we need to recuse till we become our own parent
+
+findParent(u)
+{
+  if(parent[u] == u)
+  return parent[u];
+  parent[u] = findPrent(parent[u]); // This will reconfigure parents in recursive call such that all subordinates have same ultimate Parent (PATH COMPRESSION)
+}
+
+UnionSize(u, v)
+{
+  // if same parent then don't do anything;
+    pu = findParent(u)
+    pv = findParent(v)
+    if(p(u) != p(v))
+    {
+        if(size(p(u)) > size(p(v))
+        {
+          //connect v to u and update rank of u
+          parent[v] = u;
+          size[u]+= size[v];
+        }
+      else
+      {
+          // connect u to v
+          parent[u] = v;
+          size[v]+= size[u];
+      }
+    }
+
+}
+
+Union by Rank only consider incrementing the Rank if same level is seen b/w candidates u and v else just attach the candidate
+UnionRank(u, v)
+{
+  // if same parent then don't do anything;
+    pu = findParent(u)
+    pv = findParent(v)
+    if(p(u) != p(v))
+    {
+        if(rank(p(u)) > rank(p(v))
+        {
+          //connect v to u and update rank of u
+          parent[v] = u;
+          
+        }
+      else if(rank(p(u)) < rank(p(v))
+      {
+          // connect u to v
+          parent[u] = v;
+         
+      }
+
+      else
+      {
+          // connect u to v o v to u
+          parent[v] = u;
+        rank[u]++;
+         
+      }
+    }
+
+}
+
+class Disjoint
+{
+public:
+    vector<int> parent;
+    vector<int> ranks;
+    Disjoint(int nodes)
+    {
+        parent.resize(nodes, -1);
+        for(int i=0; i<nodes; i++)
+        {
+            parent[i] = i;
+        }
+        ranks.resize(0, nodes);
+    }
+
+    int findParent(int u)
+    {
+        if(parent[u] == u)
+        return u;
+
+        return parent[u]= findParent(parent[u]);
+    }
+
+    void unionbyRank(int u, int v)
+    {
+        int p_u = findParent(u);
+        int p_v = findParent(v);
+
+        if(ranks[p_u] != ranks[p_v])
+        {
+            if(ranks[p_u] > ranks[p_v])
+            {
+                parent[v] = u;
+            }
+            else if (ranks[p_u] < ranks[p_v])
+            {
+                parent[u] = v;
+            }
+            else
+            {
+                parent[v] = u;
+                ranks[u]++;
+            }
+        }
+    }
+};
